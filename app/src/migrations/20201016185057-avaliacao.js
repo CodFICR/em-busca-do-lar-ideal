@@ -6,7 +6,10 @@ module.exports = {
     await queryInterface.createTable('avaliacao', 
     { 
       codigo_nota: {
-        type:Sequelize.INTEGER
+          allowNull: false,
+          autoIncrement: true,
+          primaryKey: true,
+          type: Sequelize.INTEGER
       },
       nota : {
         type: Sequelize.INTEGER
