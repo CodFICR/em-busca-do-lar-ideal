@@ -5,11 +5,16 @@ const {
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class instituicao extends Model {
+
     
     static associate(models) {
       instituicao.hasMany(models.avaliacao, { 
        foreignKey: 'codigo_instituicao', 
       }) 
+   
+    static associate(models) {
+      // define association here
+
     }
   };
   instituicao.init({
