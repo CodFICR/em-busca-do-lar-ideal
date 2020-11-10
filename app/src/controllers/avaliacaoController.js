@@ -1,23 +1,29 @@
-const avaliacao = require('../models').avaliacao;
-const pessoa = require('../models').pessoa;
-const instituicao = require('../models').instituicao;
+const avaliacaoModel = require('../models').avaliacao;
+const pessoaModel = require('../models').pessoa;
+const instituicaoModel = require('../models').instituicao;
 
 const create = async (req,res)=>{
 
     const {nota,tipo,codigo_pessoa,codigo_instituicao} = req.body;
 
-    await avaliacao.create({nota,tipo,codigo_pessoa,codigo_instituicao});
+    await avaliacaoModel.create({nota,tipo,codigo_pessoa,codigo_instituicao});
+    
     return res.send({Message:"Tudo Certo!"});
 }
 
 const allList = async (req,res)=>{
-    const allAvaliacao =  await avaliacao.findAll({
+
+    const allAvaliacao =  await avaliacaoModel.findAll({
+        attributes:['nota','tipo'],
         include:[{
-            model:pessoa
+            model:pessoaModel,
+            attributes:['nome','sobrenome','email']
         },{
-            model:instituicao
+            model:instituicaoModel,
+            attributes:['nome_instituicao']
         }]
     });
+
     return res.send(allAvaliacao);
 }
 

@@ -30,6 +30,19 @@ module.exports = {
         endereco :{
           type: Sequelize.STRING
         },
+        foto:{
+          type: Sequelize.STRING
+        },
+        createdAt: {
+          allowNull: false,
+          type: Sequelize.DATE,
+          defaultValue: Sequelize.NOW 
+        },
+        updatedAt: {
+          allowNull: false,
+          type: Sequelize.DATE,
+          defaultValue: Sequelize.NOW 
+        },
         nome_instituicao : {
           type: Sequelize.STRING,
           unique : true
@@ -44,7 +57,7 @@ module.exports = {
      
   },
 
-  down: async (queryInterface, Sequelize) => {
+  down: async queryInterface => {
     
       await queryInterface.dropTable('instituicao');
      

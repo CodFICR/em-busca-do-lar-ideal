@@ -11,7 +11,9 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-     
+      raca.hasMany(models.animal, { 
+        foreignKey: 'codigo_raca', 
+      }); 
     }
   };
   raca.init({
@@ -25,8 +27,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'raca',
-    freezeTableName: true,
-    timestamps: false
+    freezeTableName: true
   });
   return raca;
 };

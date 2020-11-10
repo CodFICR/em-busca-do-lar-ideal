@@ -42,11 +42,21 @@ module.exports = {
         },
         foto:{
           type: Sequelize.STRING
+        },
+        createdAt: {
+          allowNull: false,
+          type: Sequelize.DATE,
+          defaultValue: Sequelize.NOW 
+        },
+        updatedAt: {
+          allowNull: false,
+          type: Sequelize.DATE,
+          defaultValue: Sequelize.NOW 
         }
       });
     
   },
-  down: async (queryInterface, Sequelize) => {   
+  down: async queryInterface => {   
       await queryInterface.dropTable('pessoa');    
   }
 };

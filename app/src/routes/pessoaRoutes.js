@@ -6,5 +6,8 @@ const pessoa = require('../controllers/pessoaController');
 routes.get('/pessoa',pessoa.listAll);
 
 
+routes.post('/person',pessoa.create);
+
+
 
 module.exports = routes;

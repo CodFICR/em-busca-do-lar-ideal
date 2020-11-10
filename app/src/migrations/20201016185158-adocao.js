@@ -14,6 +14,16 @@ module.exports = {
        dt_adocao : {
         type: Sequelize.DATE   
       },
+      createdAt: {
+        allowNull: false,
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.NOW 
+      },
+      updatedAt: {
+        allowNull: false,
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.NOW 
+      },
       codigo_animal : {
         type: Sequelize.INTEGER,
         references: {
@@ -37,7 +47,7 @@ module.exports = {
     
   },
 
-  down: async (queryInterface, Sequelize) => {
+  down: async queryInterface => {
       await queryInterface.dropTable('adocao');
      
   }

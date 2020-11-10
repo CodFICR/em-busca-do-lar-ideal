@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       pessoa.hasMany(models.avaliacao, { 
         foreignKey: 'codigo_pessoa', 
-      }) 
+      });
     }
   };
   pessoa.init({
@@ -33,8 +33,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'pessoa',
-    freezeTableName: true,
-    timestamps: false
+    freezeTableName: true
   });
   return pessoa;
 };

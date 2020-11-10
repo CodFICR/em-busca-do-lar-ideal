@@ -1,8 +1,8 @@
-const instituicao = require('../models').instituicao;
+const instituicaoModel = require('../models').instituicao;
 
 
 const listAll = async (req,res)=>{
-    const allInsts = await instituicao.findAll();
+    const allInsts = await instituicaoModel.findAll();
     return res.send(allInsts);
 }
 
