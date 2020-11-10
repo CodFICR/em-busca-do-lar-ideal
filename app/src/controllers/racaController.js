@@ -8,8 +8,8 @@ const create = async (req,res)=>{
     return res.status(200).json({Message:"Raça Criada"});
 }
 
+   
 const listAll = async (req,res)=>{
-    
     const listRacas = await racaModel.findAll();
     return res.send(listRacas);
 }
