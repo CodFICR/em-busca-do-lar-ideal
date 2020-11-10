@@ -12,7 +12,9 @@ module.exports = {
         genero:'M',
         endereco:'Cidade: Lugar nenhum / Bairro: Lugar nenhum / Rua : Lugar nenhum / Casa : Lugar nenhum',
         tipo:'Pessoa',
-        foto:'Uma img qualquer'
+        foto:'Uma img qualquer',
+        createdAt: '00/00/0000' ,
+        updatedAt: '00/00/0000' ,
       }], {});
   },
   down: async (queryInterface, Sequelize) => {

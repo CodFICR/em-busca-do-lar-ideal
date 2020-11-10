@@ -30,6 +30,19 @@ module.exports = {
       observacao: {
         type: Sequelize.STRING
       },
+      foto:{
+        type: Sequelize.STRING
+      },
+      createdAt: {
+        allowNull: false,
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.NOW 
+      },
+      updatedAt: {
+        allowNull: false,
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.NOW 
+      },
       codigo_instituicao :{
         type : Sequelize.INTEGER,
         references: {
@@ -44,7 +57,6 @@ module.exports = {
         references: {
           model: {
             tableName: 'raca'
-            
           },
           key: 'codigo_raca'
         }
@@ -54,9 +66,7 @@ module.exports = {
      
   },
 
-  down: async (queryInterface, Sequelize) => {
-    
+  down: async queryInterface => {
     await queryInterface.dropTable('animal');
-    
   }
 };

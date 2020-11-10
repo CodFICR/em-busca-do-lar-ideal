@@ -5,6 +5,8 @@ module.exports = {
      await queryInterface.bulkInsert('avaliacao', [{
         nota:7,
         tipo:"Instituicao",
+        createdAt: '00/00/0000' ,
+        updatedAt: '00/00/0000' ,
         codigo_pessoa:1,
         codigo_instituicao:1
       }], {});

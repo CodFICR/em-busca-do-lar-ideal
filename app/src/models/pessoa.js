@@ -5,16 +5,10 @@ const {
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class pessoa extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
     static associate(models) {
-
       pessoa.hasMany(models.avaliacao, { 
         foreignKey: 'codigo_pessoa', 
-      }) 
+      });
     }
   };
   pessoa.init({
@@ -34,8 +28,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'pessoa',
-    freezeTableName: true,
-    timestamps: false
+    freezeTableName: true
   });
   return pessoa;
 };
