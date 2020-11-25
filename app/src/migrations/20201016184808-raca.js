@@ -10,24 +10,26 @@ module.exports = {
           primaryKey: true,
           type: Sequelize.INTEGER
         },
+        especie:{
+          type: Sequelize.STRING
+        },
         description: {
           type: Sequelize.STRING
-        },createdAt: {
+        }, 
+        createdAt: {
           allowNull: false,
           type: Sequelize.DATE,
-          defaultValue: Sequelize.NOW 
         },
         updatedAt: {
           allowNull: false,
           type: Sequelize.DATE,
-          defaultValue: Sequelize.NOW 
+
         }
       });
   },
-  
+
   down: async queryInterface => {
     await queryInterface.dropTable('raca');
   }
 };
 
-  

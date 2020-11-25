@@ -1,17 +1,20 @@
 const racaModel = require('../models').raca;
 
-const create = async (req,res)=>{
-   
-    const {description} = req.body;
+const store = async (req, res) => {
 
-    await racaModel.create({description});
-    return res.status(200).json({Message:"Raça Criada"});
+    const { especie, description } = req.body;
+
+    await racaModel.create({ especie, description });
+    return res.status(200).json({ Message: "Raça Criada" });
 }
 
-   
-const listAll = async (req,res)=>{
+const index = async (_, res) => {
+
     const listRacas = await racaModel.findAll();
     return res.send(listRacas);
 }
 
-module.exports = {create,listAll};
+module.exports = {
+    store,
+    index
+};

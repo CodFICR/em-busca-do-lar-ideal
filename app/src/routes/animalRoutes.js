@@ -1,17 +1,23 @@
-const {Router} = require('express');
+const { Router } = require('express');
 
-const animalController = require('../controllers/animalController');
+const multer = require('multer');
+const multerConfig = require('../config/multer')
+const animal= require('../controllers/animalController');
+const { autenticate } = require('../middlewares/authInstituicao');
 
 const routes = new Router();
+const upload = multer(multerConfig);
 
-routes.get('/animal',animalController.listAll);
+routes.get('/animal', animal.index);
 
-routes.post('/animal',animalController.store);
+routes.post('/animal/:id',autenticate, animal.store);
 
-routes.get('/animal/:id',animalController.indexById);
+routes.get('/animal/:id',autenticate, animal.indexById);
 
-routes.delete('/animal/delete/:id',animalController.remove);
+routes.delete('/animal/:id', autenticate,animal.remove);
 
-routes.put('/animal/edit/:id',animalController.update);
+routes.put('/animal/:id/files',autenticate,upload.single('file'),animal.updateFile);
+
+routes.put('/animal/:id',autenticate,animal.update);
 
 module.exports = routes;

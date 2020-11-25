@@ -2,20 +2,20 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-   
-     await queryInterface.createTable('instituicao',
-      { 
-        codigo_instituicao : {
+
+    await queryInterface.createTable('instituicao',
+      {
+        codigo_instituicao: {
           allowNull: false,
           autoIncrement: true,
           primaryKey: true,
           type: Sequelize.INTEGER
         },
-        email :{
+        email: {
           type: Sequelize.STRING,
           unique: true
         },
-        senha : {
+        senha: {
           type: Sequelize.STRING
         },
         situacao: {
@@ -24,43 +24,48 @@ module.exports = {
         telefone: {
           type: Sequelize.STRING
         },
-        cnpj : {
+        cnpj: {
           type: Sequelize.STRING
         },
-        endereco :{
+        cidade: {
           type: Sequelize.STRING
         },
-        foto:{
+        bairro:{
+          type: Sequelize.STRING
+        },
+        estado:{
+          type: Sequelize.STRING
+        },
+        foto: {
+          type: Sequelize.STRING
+        },
+        nome_instituicao: {
+          type: Sequelize.STRING,
+          unique: true
+        },
+        nome_responsavel: {
           type: Sequelize.STRING
         },
         createdAt: {
           allowNull: false,
           type: Sequelize.DATE,
-          defaultValue: Sequelize.NOW 
         },
         updatedAt: {
           allowNull: false,
           type: Sequelize.DATE,
-          defaultValue: Sequelize.NOW 
         },
-        nome_instituicao : {
-          type: Sequelize.STRING,
-          unique : true
-        },
-        nome_responsavel:{
-         type: Sequelize.STRING 
-        }
+        
 
 
-      
+
       });
-     
+
   },
 
   down: async queryInterface => {
-    
-      await queryInterface.dropTable('instituicao');
-     
+
+    await queryInterface.dropTable('instituicao');
+
   }
 };
 
