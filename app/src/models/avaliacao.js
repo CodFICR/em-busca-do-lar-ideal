@@ -4,7 +4,6 @@ const {
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class avaliacao extends Model {
-
     static associate(models) {
 
       avaliacao.belongsTo(models.pessoa, {
