@@ -1,26 +1,41 @@
 const express = require('express');
-const routesRaca = require('./routes/racaRoutes');
-const routesPessoa = require('./routes/pessoaRoutes');
-const routesInstituicao = require('./routes/instituicaoRoutes');
-const routesAvaliacao = require('./routes/avaliacaoRoutes');
-const routesAnimal = require('./routes/animalRoutes');
+const cors = require('cors');
+const path = require('path');
+const fs = require('fs');
 
-class App{
-    constructor(){
+const {racaRoutes,pessoaRoutes,instituicaoRoutes,avaliacaoRoutes,animalRoutes,adocaoRoutes} = require('./routes')
+
+class App {
+    constructor() {
         this.server = express();
+        this.storePath();
         this.middlewares();
         this.routes();
     }
-    middlewares(){
+    middlewares() {
         this.server.use(express.json());
+        this.server.use(
+            '/files',
+            express.static(path.resolve(__dirname,'..','tmp','uploads'))
+        );
+        this.server.use(cors());
     }
-    routes(){
-        this.server.use(routesRaca);
-        this.server.use(routesPessoa);
-        this.server.use(routesInstituicao);
-        this.server.use(routesAvaliacao);
-        this.server.use(routesAnimal);
+    routes() {
+        this.server.use(racaRoutes);
+        this.server.use(pessoaRoutes);
+        this.server.use(instituicaoRoutes);
+        this.server.use(avaliacaoRoutes);
+        this.server.use(animalRoutes);
+        this.server.use(adocaoRoutes);
     }
+    storePath(){
+        const tmp =  path.resolve(__dirname,'..','tmp','uploads');
+
+        if(!fs.existsSync(tmp)){
+            fs.mkdirSync(tmp);
+        }
+    }
+
 }
 
-module.exports =  new App().server;
+module.exports = new App().server;

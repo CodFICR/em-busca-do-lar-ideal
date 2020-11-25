@@ -2,61 +2,64 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-   
+
     await queryInterface.createTable('pessoa',
-      { 
-        codigo_pessoa : {
+      {
+        codigo_pessoa: {
           type: Sequelize.INTEGER,
           allowNull: false,
           autoIncrement: true,
           primaryKey: true,
         },
-        nome:{
+        nome: {
           type: Sequelize.STRING
-
         },
-        sobrenome:{
+        sobrenome: {
           type: Sequelize.STRING
-        } ,
+        },
         telefone: {
           type: Sequelize.STRING
         },
-        email:{
+        email: {
           type: Sequelize.STRING,
           unique: true
         },
-        senha:{
+        senha: {
           type: Sequelize.STRING
         },
-        dt_nascimento:{
+        dt_nascimento: {
           type: Sequelize.DATE
         },
-        genero:{
+        genero: {
           type: Sequelize.STRING
         },
-        endereco:{
+        cidade: {
           type: Sequelize.STRING
         },
-        tipo:{
+        bairro:{
           type: Sequelize.STRING
         },
-        foto:{
+        estado:{
+          type: Sequelize.STRING
+        },
+        tipo: {
+          type: Sequelize.STRING
+        },
+        foto: {
           type: Sequelize.STRING
         },
         createdAt: {
           allowNull: false,
           type: Sequelize.DATE,
-          defaultValue: Sequelize.NOW 
         },
         updatedAt: {
           allowNull: false,
           type: Sequelize.DATE,
-          defaultValue: Sequelize.NOW 
         }
       });
-    
+
   },
-  down: async queryInterface => {   
-      await queryInterface.dropTable('pessoa');    
+  down: async queryInterface => {
+    await queryInterface.dropTable('pessoa');
   }
 };

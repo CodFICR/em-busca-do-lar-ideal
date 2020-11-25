@@ -2,8 +2,10 @@ const express = require('express');
 const routes = express.Router();
 const avaliacao = require('../controllers/avaliacaoController');
 
-routes.post('/avaliacao',avaliacao.create);
+routes.post('/avaliacao', avaliacao.store);
 
-routes.get('/avalicao',avaliacao.allList);
+routes.get('/avalicao', avaliacao.index);
 
-module.exports =  routes;
+routes.get('/avaliacao/:id',avaliacao.indexById);
+
+module.exports = routes;

@@ -4,9 +4,9 @@ const raca = require('../controllers/racaController');
 
 
 // Route listando todas as Raças
-routes.get('/raca',raca.listAll);
+routes.get('/raca', raca.index);
 // Route criando nova Raça
-routes.post('/raca' ,raca.create);
+routes.post('/raca', raca.store);
 
 
-module.exports =  routes;
+module.exports = routes;
