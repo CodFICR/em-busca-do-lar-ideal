@@ -3,6 +3,10 @@ const pessoaModel = require('../models').pessoa;
 const animalModel = require('../models').animal;
 const racaModel = require('../models').raca;
 
+<<<<<<< HEAD
+
+=======
+>>>>>>> 6d924f083f8437effe00b321d02f6e58c5870790
 const index = async (_, res) => {
 
     const allAdocao = await adocaoModel.findAll({

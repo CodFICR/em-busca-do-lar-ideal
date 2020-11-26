@@ -13,12 +13,22 @@
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
+<<<<<<< HEAD
+    "date-fns": "^2.16.1",
+    "dateformat": "^4.0.0",
+=======
+>>>>>>> 6d924f083f8437effe00b321d02f6e58c5870790
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
     "multer": "^1.4.2",
     "mysql2": "^2.1.0",
     "sequelize": "^6.3.4",
+<<<<<<< HEAD
+    "sharp": "^0.26.3",
+    "yup": "^0.31.0"
+=======
     "sharp": "^0.26.3"
+>>>>>>> 6d924f083f8437effe00b321d02f6e58c5870790
   },
   "devDependencies": {
     "nodemon": "^2.0.4",

@@ -21,9 +21,15 @@ const index = async (_, res) => {
 const indexById = async (req, res) => {
     const codigo_instituicao = req.params.id;
 
+<<<<<<< HEAD
+    const attributes = ['foto', 'nome_instituicao', 'email', 'cnpj', 'nome_responsavel', 'cidade', 'bairro', 'estado', 'telefone']
+
+    const instituicao = await instituicaoModel.findByPk(codigo_instituicao, { attributes });
+=======
     const instituicao = await instituicaoModel.findByPk(codigo_instituicao, {
         attributes: ['foto', 'nome_instituicao', 'email', 'cnpj', 'nome_responsavel', 'cidade', 'bairro', 'estado', 'telefone']
     });
+>>>>>>> 6d924f083f8437effe00b321d02f6e58c5870790
 
     if (!instituicao) {
         return res.status(400).json({ Error: "Instituição não encontrada" });

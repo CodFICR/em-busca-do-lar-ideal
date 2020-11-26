@@ -1,6 +1,9 @@
 'use strict';
 const bcrypt = require('bcryptjs');
+<<<<<<< HEAD
+=======
 
+>>>>>>> 6d924f083f8437effe00b321d02f6e58c5870790
 const {
   Model
 } = require('sequelize');
@@ -49,8 +52,16 @@ module.exports = (sequelize, DataTypes) => {
     password:{
       type: DataTypes.VIRTUAL,
     },
+<<<<<<< HEAD
+    confirmPassword:{
+      type: DataTypes.VIRTUAL
+    },
+    dt_nascimento: {
+      type: DataTypes.DATE,  
+=======
     dt_nascimento: {
       type: DataTypes.STRING
+>>>>>>> 6d924f083f8437effe00b321d02f6e58c5870790
     },
     genero: {
       type: DataTypes.STRING
