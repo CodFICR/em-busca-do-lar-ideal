@@ -1,7 +1,7 @@
 const express = require('express');
-const cors = require('cors');
 const path = require('path');
 const fs = require('fs');
+const cors = require('cors');
 
 const {racaRoutes,pessoaRoutes,instituicaoRoutes,avaliacaoRoutes,animalRoutes,adocaoRoutes} = require('./routes')
 
@@ -30,12 +30,10 @@ class App {
     }
     storePath(){
         const tmp =  path.resolve(__dirname,'..','tmp','uploads');
-
         if(!fs.existsSync(tmp)){
             fs.mkdirSync(tmp);
         }
     }
-
 }
 
 module.exports = new App().server;

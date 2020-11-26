@@ -1,14 +1,23 @@
+// dependecies 
 const jwt = require('jsonwebtoken');
-
+// Model de instituicao
 const instituicaoModel = require('../models').instituicao;
-
+// Chamando a função para o auth instituicao
 const { instituicaoToken } = require('../config/auth');
+// Chamando o validation do token
+const validationToken = require('../validations/session');
 
+// Middleware para criação de Sessão (Login)
 const store = async (req, res) => {
 
     try {
 
         const { email, senha } = req.body;
+
+        await validationToken.validate({
+            email,
+            senha
+        });
 
         const organization = await instituicaoModel.findOne({ where: { email } });
 
@@ -34,7 +43,7 @@ const store = async (req, res) => {
         });
 
     } catch (err) {
-        return res.status(400).json(err);
+        return res.status(400).json(err.message);
     }
 }
 

@@ -39,6 +39,9 @@ module.exports = (sequelize, DataTypes) => {
     password:{
       type: DataTypes.VIRTUAL,
     },
+    confirmPassword:{
+      type: DataTypes.VIRTUAL
+    },
     situacao: {
       type: DataTypes.STRING,
       defaultValue:"APROVADO"
