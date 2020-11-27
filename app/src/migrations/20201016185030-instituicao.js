@@ -19,7 +19,7 @@ module.exports = {
           type: Sequelize.STRING
         },
         situacao: {
-          type: Sequelize.STRING
+          type: Sequelize.BOOLEAN
         },
         telefone: {
           type: Sequelize.STRING
@@ -30,10 +30,10 @@ module.exports = {
         cidade: {
           type: Sequelize.STRING
         },
-        bairro:{
+        bairro: {
           type: Sequelize.STRING
         },
-        estado:{
+        estado: {
           type: Sequelize.STRING
         },
         foto: {
@@ -54,18 +54,12 @@ module.exports = {
           allowNull: false,
           type: Sequelize.DATE,
         },
-        
-
-
-
       });
 
   },
 
   down: async queryInterface => {
-
     await queryInterface.dropTable('instituicao');
-
   }
 };
 

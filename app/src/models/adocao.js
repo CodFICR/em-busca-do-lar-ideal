@@ -16,6 +16,9 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey:'codigo_animal'
       });
     
+      adocao.belongsTo(models.instituicao,{
+        foreignKey:'codigo_instituicao'
+      });
     }
   };
   adocao.init({
@@ -24,6 +27,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       autoIncrement: true,
       primaryKey: true
+    },
+    situacao:{
+      type: DataTypes.BOOLEAN,
+      defaultValue:false
     },
     dt_adocao: {
       type: DataTypes.DATE,

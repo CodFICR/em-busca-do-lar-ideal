@@ -35,18 +35,19 @@ module.exports = (sequelize, DataTypes) => {
     },
     porte: {
       type: DataTypes.ENUM,
-      values:['Mini','P','M','G','GG']
-      
+      values:['MINI','P','M','G','GG']
     },
     situacao:{
-      type: DataTypes.STRING,
-      defaultValue:"ABERTO"
+      type: DataTypes.BOOLEAN,
+      defaultValue:false,
     },
     vacinacao: {
-      type: DataTypes.STRING
+      type: DataTypes.BOOLEAN,
+      defaultValue:false
     },
     castracao: {
-      type: DataTypes.STRING
+      type: DataTypes.BOOLEAN,
+      defaultValue:false
     },
     observacao: {
       type: DataTypes.STRING

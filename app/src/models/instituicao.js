@@ -10,18 +10,18 @@ module.exports = (sequelize, DataTypes) => {
 
     static associate(models) {
 
-      instituicao.hasMany(models.avaliacao, {
-        foreignKey: 'codigo_instituicao',
+      instituicao.hasMany(models.animal, {
+        foreignKey: 'codigo_instituicao'
       });
-      instituicao.hasMany(models.animal,{
-        foreignKey:'codigo_instituicao'
-      });
+      instituicao.hasMany(models.adocao, {
+        foreignKey: 'codigo_instituicao'
+      })
     }
 
-    checkoutPassword(password){
-      return bcrypt.compare(password,this.senha);
+    checkoutPassword(password) {
+      return bcrypt.compare(password, this.senha);
     }
-    
+
   };
   instituicao.init({
     codigo_instituicao: {
@@ -36,18 +36,15 @@ module.exports = (sequelize, DataTypes) => {
     senha: {
       type: DataTypes.STRING
     },
-    password:{
+    password: {
       type: DataTypes.VIRTUAL,
     },
-<<<<<<< HEAD
-    confirmPassword:{
+    confirmPassword: {
       type: DataTypes.VIRTUAL
     },
-=======
->>>>>>> 6d924f083f8437effe00b321d02f6e58c5870790
     situacao: {
-      type: DataTypes.STRING,
-      defaultValue:"APROVADO"
+      type: DataTypes.BOOLEAN,
+      defaultValue: true
     },
     telefone: {
       type: DataTypes.STRING

@@ -12,7 +12,6 @@ const resizeImg = async (local,destination,img) => {
                 )
                     
         fs.unlinkSync(local);
-    
 }
 
 module.exports = {resizeImg}

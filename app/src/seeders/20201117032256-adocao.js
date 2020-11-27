@@ -6,8 +6,10 @@ module.exports = {
       await queryInterface.bulkInsert('adocao', [{
         dt_adocao:'1111/11/11',
         dt_devolucao:'1111/11/11',
+        situacao:true,
         codigo_animal:1,
         codigo_pessoa:1,
+        codigo_instituicao:1,
         createdAt: '1111/11/11',
         updatedAt: '1111/11/11',
       }], {});

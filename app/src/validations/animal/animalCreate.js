@@ -7,16 +7,13 @@ const animalSchema = Yup.object().shape({
         .max(100)
         .required(),
     genero: Yup.string()
-        .min(3)
-        .max(100)
+        .oneOf(['MACHO', 'FEMEA'])
         .required(),
-    vacinacao: Yup.string()
-        .min(3)
-        .max(100)
+    vacinacao: Yup.boolean()
         .required(),
-    castracao: Yup.string()
-        .min(2)
-        .max(100)
+    porte: Yup.mixed()
+        .oneOf(['MINI', 'P', 'M', 'G', 'GG']),
+    castracao: Yup.boolean()
         .required(),
     observacao: Yup.string()
         .min(2)
