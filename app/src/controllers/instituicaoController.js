@@ -1,35 +1,24 @@
+// Dependencies;
+const { Op } = require('sequelize');
+const fs = require('fs');
+const bcrypt = require('bcryptjs');
+// Models;
 const instituicaoModel = require('../models').instituicao;
 const animalModel = require('../models').animal;
-const { Op } = require('sequelize');
-const bcrypt = require('bcryptjs');
-const fs = require('fs');
+// Validations;
+const instiAuthEdit =require('../validations/instituicao/editInst');
+const instiAuthCreate =  require('../validations/instituicao/instituicaoCreate');
 
+// Redimencionar tamanho da foto;
 const { resizeImg } = require('../utils/resizeImg');
 
-const index = async (_, res) => {
-    const allInsts = await instituicaoModel.findAll({
-        where: {
-            [Op.or]: [
-                { situacao: "ANÁLISE" },
-                { situacao: "APROVADA" }
-            ]
-        }
-    });
-    return res.send(allInsts);
-}
-
+// middleware para listar uma instituição ;
 const indexById = async (req, res) => {
     const codigo_instituicao = req.params.id;
 
-<<<<<<< HEAD
     const attributes = ['foto', 'nome_instituicao', 'email', 'cnpj', 'nome_responsavel', 'cidade', 'bairro', 'estado', 'telefone']
 
     const instituicao = await instituicaoModel.findByPk(codigo_instituicao, { attributes });
-=======
-    const instituicao = await instituicaoModel.findByPk(codigo_instituicao, {
-        attributes: ['foto', 'nome_instituicao', 'email', 'cnpj', 'nome_responsavel', 'cidade', 'bairro', 'estado', 'telefone']
-    });
->>>>>>> 6d924f083f8437effe00b321d02f6e58c5870790
 
     if (!instituicao) {
         return res.status(400).json({ Error: "Instituição não encontrada" });
@@ -38,10 +27,23 @@ const indexById = async (req, res) => {
     return res.status(200).json(instituicao);
 }
 
-
+// Middlewarea para criação de uma instituição;
 const store = async (req, res) => {
 
-    const { email, password, telefone, cnpj, bairro, cidade, estado, nome_instituicao, nome_responsavel } = req.body;
+    const { email, password,confirmPassword, telefone, cnpj, bairro, cidade, estado, nome_instituicao, nome_responsavel } = req.body;
+
+    await instiAuthCreate.validate({
+        email,
+        password,
+        confirmPassword,
+        bairro,
+        cidade,
+        estado,
+        nome_instituicao,
+        nome_responsavel,
+        telefone,
+        cnpj
+    })
 
     const instituicaoExists = await instituicaoModel.findOne({
         where: {
@@ -63,11 +65,8 @@ const store = async (req, res) => {
     }
 
     const senha = await bcrypt.hash(password, 8);
-
-    await instituicaoModel.create({
-        email,
+    const instituicao = { email,
         senha,
-        foto,
         telefone,
         cnpj,
         bairro,
@@ -75,12 +74,14 @@ const store = async (req, res) => {
         estado,
         nome_instituicao,
         nome_responsavel
-    });
+    }
+
+    await instituicaoModel.create(instituicao);
 
     return res.status(200).json({ Message: "Usuário criado com sucesso!" });
 }
 
-
+// Middleware para remover uma instituição;
 const remove = async (req, res) => {
     const codigo_instituicao = req.params.id;
 
@@ -96,22 +97,22 @@ const remove = async (req, res) => {
         return res.status(400).json({ Error: "Você não tem permição para remover esta instituição!" });
     }
 
-    await animalModel.update(
-        { situacao: "Removido" },
-        { where: { codigo_instituicao, situacao: "ABERTO" } }
+    await animalModel.update({ situacao: false },
+        { where: { codigo_instituicao } }
     );
 
-    await instituicao.update({ situacao: "FECHADA" });
+    await instituicao.update({ situacao: false });
 
     return res.status(200).json({ Message: "Instituição deletada" });
 }
 
+// Middleware responsável para alterar dados da instituição;
 const update = async (req, res) => {
 
     const codigo_instituicao = req.params.id;
-
     const instituicao = await instituicaoModel.findByPk(codigo_instituicao);
 
+    await instiAuthEdit.validate(req.body);
 
     if (!instituicao) {
         return res.status(400).json({ Error: "Instituição não encontrada" });
@@ -126,8 +127,8 @@ const update = async (req, res) => {
     return res.status(200).json({ Message: "Instituição editada com sucesso!" });
 }
 
+// Middleware para inserir ou alterar imagem da instituição;
 const updateFile = async (req, res) => {
-
     try {
         const codigo_instituicao = req.params.id;
 
@@ -137,7 +138,7 @@ const updateFile = async (req, res) => {
             fs.unlinkSync(req.file.path);
             return res.status(400).json({ Error: "Instituição não encontrada!" });
         }
-        
+
         const { filename: image } = req.file;
         const [name] = image.split('.');
         const foto = `${name}.jpg`
@@ -152,8 +153,8 @@ const updateFile = async (req, res) => {
     }
 }
 
+// Exportando middlewares (indexById, Store, Remove, Update,UpdateFile);
 module.exports = {
-    index,
     indexById,
     store,
     remove,

@@ -1,36 +1,24 @@
-<<<<<<< HEAD
-// dependecies 
+// Dependecie;
 const jwt = require('jsonwebtoken');
-// Model de instituicao
+// Model de instituicao;
 const instituicaoModel = require('../models').instituicao;
-// Chamando a função para o auth instituicao
+// Chamando a função para o auth instituicao;
 const { instituicaoToken } = require('../config/auth');
-// Chamando o validation do token
+// Chamando o validation do token;
 const validationToken = require('../validations/session');
 
-// Middleware para criação de Sessão (Login)
-=======
-const jwt = require('jsonwebtoken');
-
-const instituicaoModel = require('../models').instituicao;
-
-const { instituicaoToken } = require('../config/auth');
-
->>>>>>> 6d924f083f8437effe00b321d02f6e58c5870790
+// Middleware para criação de Sessão (Login);
 const store = async (req, res) => {
 
     try {
 
         const { email, senha } = req.body;
 
-<<<<<<< HEAD
         await validationToken.validate({
             email,
             senha
         });
 
-=======
->>>>>>> 6d924f083f8437effe00b321d02f6e58c5870790
         const organization = await instituicaoModel.findOne({ where: { email } });
 
         if (!organization) {
@@ -55,12 +43,9 @@ const store = async (req, res) => {
         });
 
     } catch (err) {
-<<<<<<< HEAD
         return res.status(400).json(err.message);
-=======
-        return res.status(400).json(err);
->>>>>>> 6d924f083f8437effe00b321d02f6e58c5870790
     }
 }
 
+// Exportando Middleware( store );
 module.exports = { store };

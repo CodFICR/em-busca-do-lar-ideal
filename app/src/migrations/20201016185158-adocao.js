@@ -11,6 +11,9 @@ module.exports = {
           primaryKey: true,
           type: Sequelize.INTEGER
         },
+        situacao:{
+          type: Sequelize.BOOLEAN
+        },
         dt_devolucao: {
           type: Sequelize.DATE,
         },
@@ -41,6 +44,15 @@ module.exports = {
               tableName: 'pessoa'
             },
             key: 'codigo_pessoa'
+          }
+        },
+        codigo_instituicao: {
+          type: Sequelize.INTEGER,
+          references: {
+            model: {
+              tableName: 'instituicao'
+            },
+            key: 'codigo_instituicao'
           }
         }
 

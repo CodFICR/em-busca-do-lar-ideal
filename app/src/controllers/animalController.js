@@ -1,15 +1,20 @@
+// Dependencie;
+const fs = require('fs');
+// Models;
 const animalModel = require('../models').animal;
 const racaModel = require('../models').raca;
 const instituicaoModel = require('../models').instituicao;
 const adocaoModel = require('../models').adocao;
-const fs = require('fs');
+// Função para modificar resolução de imagem;
 const { resizeImg}  = require('../utils/resizeImg');
 
+
+// Middleware listando os animais que possuem {Situação : true};
 const index = async (_, res) => {
 
     const allAnimals = await animalModel.findAll({
         where: {
-            situacao: "ABERTO"
+            situacao: false
         },
         attributes: ['codigo_animal', 'foto', 'nome', 'genero', 'porte', 'situacao', 'vacinacao', 'castracao', 'observacao'],
         include: [{ model: racaModel, attributes: ['description', 'especie'] }],
@@ -24,6 +29,7 @@ const index = async (_, res) => {
     return res.status(200).json(allAnimals);
 }
 
+// Middleware criando um novo animal;
 const store = async (req, res) => {
     const codigo_instituicao = req.params.id;
 
@@ -52,6 +58,7 @@ const store = async (req, res) => {
     return res.status(200).json({ Message: "Animal criado com sucesso!" });
 }
 
+// Middleware listando um animal pelo ID;
 const indexById = async (req, res) => {
     const id = req.params.id;
 
@@ -76,6 +83,7 @@ const indexById = async (req, res) => {
     return res.status(200).json(animalExists);
 }
 
+// Middleware modificando os dados do animal;
 const update = async (req, res) => {
 
     const id = req.params.id;
@@ -91,6 +99,7 @@ const update = async (req, res) => {
     return res.status(200).json({ Message: "Animal editado com sucesso" });
 }
 
+// Middleware removendo o animal 
 const remove = async (req, res) => {
     const codigo_animal = req.params.id;
     const animal = await animalModel.findByPk(codigo_animal, {
@@ -101,12 +110,13 @@ const remove = async (req, res) => {
         return res.status(400).json({ Message: "Animal não encontrado" });
     }
 
-    await animal.update({ situacao: "REMOVIDO" });
+    await animal.update({ situacao: false });
 
     return res.status(200).json({ error: "Animal deletado" });
 
 }
 
+// Middleware criando ou alterando foto --> (File)
 const updateFile = async (req, res) => {
 
     const codigo_animal = req.params.id;

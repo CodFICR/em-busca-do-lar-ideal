@@ -10,10 +10,6 @@ const instituicaoSchema = Yup.object().shape({
         .min(3)
         .max(100)
         .required(),
-    sobrenome: Yup.string()
-        .min(3)
-        .max(100)
-        .required(),
     cidade: Yup.string()
         .min(2)
         .max(100)
@@ -26,15 +22,20 @@ const instituicaoSchema = Yup.object().shape({
         .min(2)
         .max(100)
         .required(),
-    password: Yup.string()
-        .min(6)
-        .max(25),
     email: Yup.string()
         .email()
+        .required(),
+    cnpj: Yup.string()
+        .length(14)
         .required(),
     telefone: Yup.string()
         .length(11)
         .required(),
+    password: Yup.string()
+        .min(6),
+    confirmPassword: Yup.string().when('password', (password, field) =>
+        password ? field.required().oneOf([Yup.ref('password')]) : field
+    ),
 });
 
 

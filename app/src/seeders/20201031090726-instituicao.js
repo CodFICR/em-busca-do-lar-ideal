@@ -5,7 +5,7 @@ module.exports = {
     await queryInterface.bulkInsert('instituicao', [{
       email: 'emailInstituicao@gmail.com',
       senha: '123456',
-      situacao: 'APROVADO',
+      situacao: true,
       telefone: '(11) 11111-1111',
       cnpj: 'XX.XXX.XXX/YYYY-ZZ',
       cidade:'Qualquer Cidade',

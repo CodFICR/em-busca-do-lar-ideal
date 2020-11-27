@@ -6,7 +6,7 @@ const sessionSchema = Yup.object().shape({
     .required(),
     senha: Yup.string()
     .min(6)
-    .required()
+    .required(),
 });
 
 module.exports = sessionSchema;

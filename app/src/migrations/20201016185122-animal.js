@@ -22,10 +22,10 @@ module.exports = {
           type: Sequelize.STRING
         },
         vacinacao: {
-          type: Sequelize.STRING
+          type: Sequelize.BOOLEAN
         },
         castracao: {
-          type: Sequelize.STRING
+          type: Sequelize.BOOLEAN
         },
         observacao: {
           type: Sequelize.STRING

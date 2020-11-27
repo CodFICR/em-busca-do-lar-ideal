@@ -1,13 +1,12 @@
+// Dependencies;
 const express = require('express');
-const routes = express.Router();
+// Controller;
 const raca = require('../controllers/racaController');
+// Utilizavel;
+const routes = express.Router();
 
-
-// Route listando todas as Raças
+// Route listando todas as Raças;
 routes.get('/raca', raca.index);
-// Route criando nova Raça
-routes.post('/raca', raca.store);
 
-
+// Exportando route ( GET );
 module.exports = routes;
-

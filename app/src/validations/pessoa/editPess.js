@@ -33,8 +33,6 @@ const editPessoaSchema = Yup.object().shape({
                 password ? field.required().oneOf([Yup.ref('password')]) : field
             ),
 
-
 });
-
 
 module.exports = editPessoaSchema;

@@ -1,7 +1,7 @@
 const Yup = require('yup');
 
-
 const pessoaSchema = Yup.object().shape({
+   
     nome: Yup.string()
         .min(3)
         .max(100)
@@ -36,6 +36,5 @@ const pessoaSchema = Yup.object().shape({
         .length(11)
         .required(),
 });
-
 
 module.exports = pessoaSchema;
